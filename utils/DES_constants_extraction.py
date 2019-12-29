@@ -1,5 +1,5 @@
 # Récupère un tableau associatif avec les constantes du chiffrement DES
-def recupConstantesDES():
+def get_des_constants():
     file = open("DES_constants.txt", "r")
     txt = file.read()
     file.close()
