@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # Récupère un tableau associatif avec les constantes du chiffrement DES
 def get_des_constants():
     f = open("utils/DES_constants.txt", "r")
@@ -93,7 +94,7 @@ def get_des_constants():
         while (ord('0') <= ord(txt[deb]) <= ord('9') and deb < fin):
             X[clef][0][col] = 10 * X[clef][0][col] + int(txt[deb])
             deb += 1
-        X[clef][0][col] -= 1  # Car les entiers sont entre 1 et 56
+        #X[clef][0][col] -= 1  # Car les entiers sont entre 1 et 56
         while (not (ord('0') <= ord(txt[deb]) <= ord('9')) and deb < fin): deb += 1
 
         col += 1
