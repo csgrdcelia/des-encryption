@@ -5,7 +5,7 @@ from utils.des_constants_extraction import get_des_constants
 def encrypt(file, key):
     des_constants = get_des_constants()
     key = remove_check_bits(key)
-    key = first_permutation(key, des_constants["CP_1"][0])
+    key = permutation(key, des_constants["CP_1"][0])
 
 
 def remove_check_bits(key):
@@ -16,7 +16,7 @@ def remove_check_bits(key):
     return new_key
 
 
-def first_permutation(key, cp1):
+def permutation(key, cp1):
     new_key = [0] * 56
 
     for i in range(0, 62):
