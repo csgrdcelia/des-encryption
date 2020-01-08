@@ -3,7 +3,26 @@ from utils.des_constants_extraction import get_des_constants
 
 
 def decrypt(message, key):
-    0
+    # TODO: rounds, etc
+    initial_key = inverse_permutation(get_encrypted_key_after_first_permutation(), des_constants["CP_1"][0], True)
+    print(initial_key)
+
+
+def inverse_permutation(encrypted_key, permutation_key, skip_8):
+    list_length = len(permutation_key) + 7 if skip_8 else len(permutation_key) - 1
+    initial_key = [0] * list_length
+    for permutation_index in permutation_key:
+        if skip_8:
+            if (permutation_index + 1) % 8 == 0:
+                continue
+        initial_key[permutation_index] = encrypted_key.pop(0)
+    return initial_key
 
 
 des_constants = get_des_constants()
+
+
+def get_encrypted_key_after_first_permutation():
+    key = "11000000000111110100100011110010111101001001011010111111"
+    return [int(x) for x in list(key)]
+
