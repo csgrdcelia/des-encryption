@@ -18,15 +18,23 @@ ALPHABET += "à"  # caractère 61 : a accent aïgu
 ALPHABET += "-"  # caractère 62 : tiret
 ALPHABET += "\n"  # caractère 63 : saut de ligne
 
+
+def get_binary_value_on_6_bits(binary_value):
+    while len(binary_value) < 6:
+        binary_value = "0" + binary_value
+
+    return binary_value
+
+
 # Dans cet alphabet les caractères vont de 0 à 63.
 # En binaire ça donne un champ de valeur de 0 à 111111(=1+2+4+8+16+32=63)
 # ALPHABETBINAIRE est un tableau avec les nombres en binaire
 ALPHABETBINAIRE = dict()
 for i in range(0, 64):
     x = bin(i)
-    y = '00000' + x[2:]
+    y = get_binary_value_on_6_bits(x[2:])
     ALPHABETBINAIRE[i] = ""
-    for k in range(-6, 0, -1):
+    for k in range(0, 6):
         ALPHABETBINAIRE[i] += y[k]
 
 
