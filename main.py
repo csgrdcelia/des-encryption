@@ -4,11 +4,11 @@ from encrypt import encrypt
 
 def main():
     action_type = sys.argv[1]
-    file = get_file_content(sys.argv[2])
+    message = get_file_content(sys.argv[2])
     key = to_int_array(get_file_content(sys.argv[3]))
 
     if action_type == "encrypt":
-        encrypt(file, key)
+        encrypt(message, key)
 
 
 def get_file_content(file_path):

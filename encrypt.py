@@ -3,10 +3,24 @@ from utils.des_constants_extraction import get_des_constants
 from textwrap import wrap
 
 
-def encrypt(file, key):
+def encrypt(message, key):
     key = permutation(key, des_constants["CP_1"][0], True)
     subkey_array = get_subkey_array(key, des_constants["CP_2"][0])
-    #perfom_ronde(,,subkey_array)
+
+    packets = packet(message)
+    encrypt_message = ""
+    for pack in packets:
+        encrypt_message += listToString(encrypt_packet(pack, subkey_array))
+
+    print(encrypt_message)
+
+
+def encrypt_packet(message_part, subkey_array):
+    message_part = initial_permutation(message_part)
+    left, right = cut_off(message_part)
+    left, right = perfom_ronde(left, right, subkey_array)
+    message_part = left + right
+    return inverse_initial_permutation(message_part)
 
 
 def permutation(initial_key, permutation_key, skip_8=False):
@@ -45,15 +59,14 @@ def packet(message):
     return parts
 
 
-def initial_permutation(message_parts):
-    index = 0
+def initial_permutation(message_part):
     key_pi = des_constants["PI"][0]
+    return permutation(message_part, key_pi)
 
-    while index < len(message_parts):
-        message_parts[index] = permutation(message_parts[index], key_pi)
-        index += 1
 
-    return message_parts
+def inverse_initial_permutation(message_part):
+    key_pi_i = des_constants["PI_I"][0]
+    return permutation(message_part, key_pi_i)
 
 
 def cut_off(key):
