@@ -1,5 +1,6 @@
 import sys
 from encrypt import encrypt
+from decrypt import decrypt
 
 
 def main():
@@ -9,6 +10,10 @@ def main():
 
     if action_type == "encrypt":
         encrypt(message, key)
+    elif action_type == "decrypt":
+        decrypt(message, key)
+    else:
+        raise Exception("Opération non supportée")
 
 
 def get_file_content(file_path):
