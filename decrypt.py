@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from utils.des_constants_extraction import get_des_constants
+from utils.data_manipulation import *
 
 def decrypt(message, key):
     # TODO: rounds, etc
@@ -24,14 +25,6 @@ def inverse_permutation(encrypted_key, permutation_key, skip_8=False):
     if skip_8:
         initial_key = remove_check_bits(initial_key)
     return initial_key
-
-
-def list_to_string(s):
-    index = 0
-    while index < len(s):
-        s[index] = str(s[index])
-        index += 1
-    return "".join(s)
 
 
 des_constants = get_des_constants()
