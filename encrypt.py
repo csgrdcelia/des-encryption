@@ -1,19 +1,22 @@
 # -*- coding: utf-8 -*-
+from utils.alpha_binary_conversion import conv_bin
+from utils.alpha_binary_conversion import nib_vnoc
 from utils.des_constants_extraction import get_des_constants
 from utils.data_manipulation import *
 from textwrap import wrap
 
-
+# !LvE.eb!wjKdK,vjOtè -> 100010000011011010100001000100111100101101100000100101001001000000100111011100000101101
+#                               00010000000001101000100011100011011000100
 def encrypt(message, key):
     key = permutation(key, des_constants["CP_1"][0], True)
     subkey_array = get_subkey_array(key, des_constants["CP_2"][0])
 
-    packets = packet(message)
+    packets = packet(conv_bin(message))
     encrypt_message = ""
     for pack in packets:
         encrypt_message += list_to_string(encrypt_packet(pack, subkey_array))
 
-    print(encrypt_message)
+    print(nib_vnoc(encrypt_message))
 
 
 def encrypt_packet(message_part, subkey_array):

@@ -29,6 +29,8 @@ def inverse_permutation(encrypted_key, permutation_key, skip_8=False):
 
 des_constants = get_des_constants()
 
+encrypted_message = "iDahEètglJAncFogDRHGxA"
+
 
 def get_encrypted_key_after_first_permutation():
     key = "11000000000111110100100011110010111101001001011010111111"
