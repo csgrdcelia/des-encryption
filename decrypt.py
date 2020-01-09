@@ -9,15 +9,12 @@ def decrypt(message, key):
     print(initial_key)
 
 
-def delete_8th_multiple_index(key):
-    result = []
-    bits = len(key)
-    for index in range(0, bits):
-        element = str(key.pop(0))
-        if (index + 1) % 8 != 0:
-            result.append(element)
-        index += 1
-    return result
+def remove_check_bits(key):
+    new_key = []
+    for index, number in enumerate(key, start=1):
+        if index % 8 != 0:
+            new_key.append(number)
+    return new_key
 
 
 def inverse_permutation(encrypted_key, permutation_key, skip_8=False):
@@ -26,7 +23,7 @@ def inverse_permutation(encrypted_key, permutation_key, skip_8=False):
         initial_key[permutation_index] = encrypted_key.pop(0)
 
     if skip_8:
-        initial_key = delete_8th_multiple_index(initial_key)
+        initial_key = remove_check_bits(initial_key)
     return initial_key
 
 
@@ -48,33 +45,6 @@ def test_inverse_permutation(permutation_key_name, permuted_binary_string, expec
 
 des_constants = get_des_constants()
 
-test_inverse_permutation(permutation_key_name="CP_1",
-                         permuted_binary_string="11000000000111110100100011110010111101001001011010111111",
-                         expected_binary_string="01011110101101010100101111110101000000110110111101001000",
-                         skip_8=True)
-
-test_inverse_permutation(permutation_key_name="PI",
-                         permuted_binary_string="0111110110101011001111010010101001111111101100100000001111110010",
-                         expected_binary_string="1101110010111011110001001101010111100110111101111100001000110010")
-
-test_inverse_permutation(permutation_key_name="E",
-                         permuted_binary_string="001111111111110110100100000000000111111110100100",
-                         expected_binary_string="01111111101100100000001111110010")
-
-test_inverse_permutation(permutation_key_name="PERM",
-                         permuted_binary_string="10100011010001111110110111100110",
-                         expected_binary_string="01010001111010111111000100110111")
-
-test_inverse_permutation(permutation_key_name="PI_I",
-                         permuted_binary_string="1000100000110110101000010001001111001011011000001001010010010000",
-                         expected_binary_string="0011000011001010010000100001110011010101001001100001000100011010")
-
-def remove_check_bits(key):
-    new_key = []
-    for index, number in enumerate(key, start=1):
-        if index % 8 != 0:
-            new_key.append(number)
-    return new_key
 
 def get_encrypted_key_after_first_permutation():
     key = "11000000000111110100100011110010111101001001011010111111"
