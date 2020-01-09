@@ -10,7 +10,7 @@ def encrypt(message, key):
     packets = packet(message)
     encrypt_message = ""
     for pack in packets:
-        encrypt_message += listToString(encrypt_packet(pack, subkey_array))
+        encrypt_message += list_to_string(encrypt_packet(pack, subkey_array))
 
     print(encrypt_message)
 
@@ -74,7 +74,7 @@ def cut_off(key):
     return key[:middle], key[middle:]
 
 
-def listToString(s):
+def list_to_string(s):
     index = 0
     while index < len(s):
         s[index] = str(s[index])
@@ -101,7 +101,7 @@ def expansion(right):
 
 
 def XOR_with_subkey(subkey_array, right):
-    return XOR(right, listToString(subkey_array))
+    return XOR(right, list_to_string(subkey_array))
 
 
 def substitute_block(calculated_right):
@@ -122,7 +122,7 @@ def ronde(left, right, subkey_array):
     calculated_right = expansion(right)
     calculated_right = XOR_with_subkey(subkey_array, calculated_right)
     calculated_right = substitute_block(calculated_right)
-    calculated_right = listToString(substitute_with_perm(calculated_right))
+    calculated_right = list_to_string(substitute_with_perm(calculated_right))
     calculated_right = XOR(calculated_right, left)
     return right, calculated_right
 
