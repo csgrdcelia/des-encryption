@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from utils.des_constants_extraction import get_des_constants
-from textwrap import wrap
 
 def decrypt(message, key):
     # TODO: rounds, etc
@@ -33,14 +32,6 @@ def list_to_string(s):
         s[index] = str(s[index])
         index += 1
     return "".join(s)
-
-
-def test_inverse_permutation(permutation_key_name, permuted_binary_string, expected_binary_string, skip_8=False):
-    entry = wrap(permuted_binary_string, 1)
-    permutation_key = des_constants[permutation_key_name][0]
-
-    print(permutation_key_name + " : " +
-          str(list_to_string(inverse_permutation(entry, permutation_key, skip_8)) == expected_binary_string))
 
 
 des_constants = get_des_constants()
