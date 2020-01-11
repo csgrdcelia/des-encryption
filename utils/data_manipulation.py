@@ -1,8 +1,8 @@
 from textwrap import wrap
 from utils.des_constants_extraction import get_des_constants
 
-
 des_constants = get_des_constants()
+
 
 def packet(message):
     parts = wrap(message, 64)
@@ -27,7 +27,7 @@ def list_to_string(s):
     return "".join(s)
 
 
-def XOR(a, b):
+def xor(a, b):
     index = 0
     result = ""
     while index < len(a):
@@ -73,8 +73,8 @@ def expansion(right):
     return permutation(right, E)
 
 
-def XOR_with_subkey(subkey_array, right):
-    return XOR(right, subkey_array)
+def xor_with_subkey(subkey_array, right):
+    return xor(right, subkey_array)
 
 
 def convert_block_with_s_key(block, S):
@@ -100,6 +100,6 @@ def substitute_with_perm(calculated_right):
 
 def pse_xor_subkey(right, subkey):
     right = expansion(right)
-    right = XOR_with_subkey(subkey, right)
+    right = xor_with_subkey(subkey, right)
     right = substitute_block(right)
     return substitute_with_perm(right)

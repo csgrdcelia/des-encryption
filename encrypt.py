@@ -4,8 +4,6 @@ from utils.alpha_binary_conversion import nib_vnoc
 from utils.data_manipulation import *
 
 
-# !LvE.eb!wjKdK,vjOtè -> 100010000011011010100001000100111100101101100000100101001001000000100111011100000101101
-#                               00010000000001101000100011100011011000100
 def encrypt(message, key):
     key = permutation(key, des_constants["CP_1"][0], True)
     subkey_array = get_subkey_array(key, des_constants["CP_2"][0])
@@ -38,7 +36,7 @@ def inverse_initial_permutation(message_part):
 
 def ronde(left, right, subkey):
     temp_right = pse_xor_subkey(right, subkey)
-    temp_right = XOR(temp_right, left)
+    temp_right = xor(temp_right, left)
     return right, temp_right
 
 

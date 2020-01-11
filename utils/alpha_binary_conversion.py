@@ -101,14 +101,3 @@ def nib_vnoc(txt):
                     break
 
     return res
-
-
-# Test
-# txt0 = "Je teste au stérone !? ^_^"
-# txt1 = conv_bin(txt0)
-# txt2 = nib_vnoc(txt1)
-# print(txt0)
-# print(txt1)
-# print(txt2)
-#
-# print(nib_vnoc("1101110010111011110001001101010111100110111101111100001000110010100111010010101101101011111000110011101011011111"))
