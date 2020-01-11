@@ -17,7 +17,8 @@ def main():
 
 
 def get_file_content(file_path):
-    file = open(file_path, "r", encoding="utf-8")
+    # file = open(file_path, "r", encoding="utf-8")
+    file = open(file_path, "r")
     text = file.read()
     file.close()
     return text
