@@ -3,6 +3,7 @@ from utils.data_manipulation import *
 from utils.alpha_binary_conversion import conv_bin
 from utils.alpha_binary_conversion import nib_vnoc
 
+
 def decrypt(message, key):
     key = permutation(key, des_constants["CP_1"][0], True)
     subkey_array = get_subkey_array(key, des_constants["CP_2"][0])
