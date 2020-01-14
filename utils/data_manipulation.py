@@ -103,3 +103,13 @@ def pse_xor_subkey(right, subkey):
     right = xor_with_subkey(subkey, right)
     right = substitute_block(right)
     return substitute_with_perm(right)
+
+
+def initial_permutation(message_part):
+    key_pi = des_constants["PI"][0]
+    return permutation(message_part, key_pi)
+
+
+def inverse_initial_permutation(message_part):
+    key_pi_i = des_constants["PI_I"][0]
+    return permutation(message_part, key_pi_i)

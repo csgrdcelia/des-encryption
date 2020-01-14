@@ -24,14 +24,14 @@ def encrypt_packet(message_part, subkey_array):
     return inverse_initial_permutation(message_part)
 
 
-def initial_permutation(message_part):
-    key_pi = des_constants["PI"][0]
-    return permutation(message_part, key_pi)
-
-
-def inverse_initial_permutation(message_part):
-    key_pi_i = des_constants["PI_I"][0]
-    return permutation(message_part, key_pi_i)
+# def initial_permutation(message_part):
+#     key_pi = des_constants["PI"][0]
+#     return permutation(message_part, key_pi)
+#
+#
+# def inverse_initial_permutation(message_part):
+#     key_pi_i = des_constants["PI_I"][0]
+#     return permutation(message_part, key_pi_i)
 
 
 def ronde(left, right, subkey):
